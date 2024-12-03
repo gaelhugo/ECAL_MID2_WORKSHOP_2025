@@ -16,12 +16,15 @@ export default class ButtonCube extends BaseShape {
         this.isPressed ? -this.params.cubeSize / 2 : this.initialY
       );
 
-      FirebaseConfig.sendData("connections/" + FirebaseConfig.UID, {
-        target: this.uid,
-        name: this.name,
-        date: Date.now(),
-        position: this.isPressed ? "down" : "up",
-      });
+      FirebaseConfig.sendData(
+        FirebaseConfig.DEFAULT_PATH + "/" + FirebaseConfig.UID,
+        {
+          target: this.uid,
+          name: this.name,
+          date: Date.now(),
+          position: this.isPressed ? "down" : "up",
+        }
+      );
     }
   }
 }
