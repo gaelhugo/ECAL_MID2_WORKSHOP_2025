@@ -9,17 +9,18 @@ export default class BaseShape {
     transitionSpeed: 0.1,
   };
 
-  constructor(params) {
+  constructor(params, model = null) {
     this.params = params;
     this.uid = params.uid;
     this.name = params.name;
+    this.model = model;
 
     // Create materials
     const colorIndex = this.params.i * this.params.gridColumns + this.params.j;
     this.materials = new Materials(this.params);
     this.materials.createStandardMaterial(colorIndex);
 
-    this.createMesh();
+    if (!this.model) this.createMesh();
     this.setupPositioning();
     this.setupAnimationState();
   }
